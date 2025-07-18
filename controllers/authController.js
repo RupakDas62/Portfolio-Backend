@@ -108,7 +108,14 @@ const verify = (req, res) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    return res.status(200).json({ success: true, admin: decoded.admin });
+    return res.status(200).json({
+      success: true,
+      admin: {
+        id: decoded.id,
+        email: decoded.email,
+        isAdmin: decoded.isAdmin,
+      },
+    });
   } catch (err) {
     return res.status(401).json({ success: false, message: 'Invalid token' });
   }
