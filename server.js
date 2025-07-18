@@ -16,7 +16,7 @@ const app = express();
 
 // ✅ Allow cookies & specific origin
 app.use(cors({
-  origin: ["http://localhost:5173", "https://portfolio-frontend-five-cyan.vercel.app/"], // <- add your frontend domains here
+  origin: ["https://portfolio-frontend-five-cyan.vercel.app/", "http://localhost:5173"], // <- add your frontend domains here
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
