@@ -17,7 +17,7 @@ const app = express();
 // ✅ Allow cookies & specific origin
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://portfolio-frontend-five-cyan.vercel.app"
+  "https://rupak-das-portfolio.vercel.app/"
 ];
 
 app.use(
