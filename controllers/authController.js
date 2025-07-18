@@ -34,8 +34,8 @@ const login = async (req, res) => {
     // ✅ Set cookie (optional)
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "Lax",
+      secure: true,           // ✅ Always true for HTTPS (Render uses HTTPS)
+      sameSite: "None",       // ✅ Must be "None" for cross-origin
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
