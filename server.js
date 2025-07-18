@@ -15,11 +15,24 @@ dotenv.config();
 const app = express();
 
 // ✅ Allow cookies & specific origin
-app.use(cors({
-  origin: "https://portfolio-frontend-five-cyan.vercel.app", // <- add your frontend domains here
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://portfolio-frontend-five-cyan.vercel.app"
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use(cookieParser());
