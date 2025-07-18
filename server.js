@@ -15,12 +15,11 @@ dotenv.config();
 const app = express();
 
 // ✅ Allow cookies & specific origin
-app.use(
-  cors({
-    origin: FRONTEND_URL,
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: ["http://localhost:5173", "https://portfolio-frontend-five-cyan.vercel.app/"], // <- add your frontend domains here
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 app.use(express.json());
 app.use(cookieParser());
