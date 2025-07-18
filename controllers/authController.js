@@ -91,12 +91,11 @@ const registerAdmin = async (req, res) => {
 const logout = (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "Lax",
-    path: "/", // ← This is important
+    secure: true,    // Must match the cookie settings used during login
+    sameSite: "None" // Must also match for proper removal
   });
 
-  res.status(200).json({ message: "Logged out successfully" });
+  return res.status(200).json({ message: "Logout successful" });
 };
 
 const verify = (req, res) => {
