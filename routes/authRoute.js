@@ -7,4 +7,6 @@ router.post('/register', registerAdmin);
 router.post('/login', login);
 router.post('/logout', logout);
 
+router.get('/verify', verify);
+
 module.exports = router;

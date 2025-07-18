@@ -99,6 +99,20 @@ const logout = (req, res) => {
   res.status(200).json({ message: "Logged out successfully" });
 };
 
+const verify = (req, res) => {
+  const token = req.cookies.token;
+
+  if (!token) {
+    return res.status(401).json({ success: false, message: 'No token provided' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, SECRET_KEY);
+    return res.status(200).json({ success: true, admin: decoded.admin });
+  } catch (err) {
+    return res.status(401).json({ success: false, message: 'Invalid token' });
+  }
+};
 
 
-module.exports = { registerAdmin, login, logout };
+module.exports = { registerAdmin, login, logout, verify };
